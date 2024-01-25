@@ -10,14 +10,14 @@ namespace ExpenseTrackerApp
         public decimal Amount { get; set; }
         public string Type { get; set; }
         public string Category { get; set; }
-        public DateTime Date { get; set; }
+        public DateTimeOffset Date { get; set; }
 
         // Add other properties as needed
 
         public Expense()
         {
             // Ensure Date is initialized with a default value if needed
-            Date = DateTime.Now;
+            Date = DateTimeOffset.Now;
         }
     }
 }

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YourExpenseTrackerNamespace"
         mc:Ignorable="d"
-        Title="Expense Tracker" Height="450" Width="500">
+        Title="Expense Tracker" Height="450" Width="700">
     <Grid>
-        <TabControl>
-            <!-- Tab for Expenses -->
-            <TabItem Header="Record Expenses">
+        <TabControl Background="#2C3E50" Foreground="White" BorderBrush="#3498DB" BorderThickness="1" Margin="10" >
+            <!-- Tab for Record Expenses -->
+            <TabItem Header="Record Expenses" Margin="167,1,-183,0">
                 <Grid>
                     <Image Source="/Images/BackgroundImg.jpg" Stretch="UniformToFill">
                         <Image.Effect>
@@ -35,7 +35,7 @@
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                                     <TextBlock Text="Type:" Margin="0,0,10,0" FontSize="15" Foreground="White"/>
-                                    <ComboBox x:Name="TypeComboBox" Margin="54,0,10,0" Width="150" SelectedIndex="0" Background="#DDFFFFFF" SelectionChanged="TypeComboBox_SelectionChanged">
+                                    <ComboBox x:Name="TypeComboBox" Margin="54,0,10,0" Width="150" Background="#DDFFFFFF" SelectionChanged="TypeComboBox_SelectionChanged">
                                         <ComboBoxItem Content="Expense"/>
                                         <ComboBoxItem Content="Income"/>
                                     </ComboBox>
@@ -70,13 +70,157 @@
                 </Grid>
             </TabItem>
 
-            <!-- Tab for Incomes -->
-            <TabItem Header="View Expenses">
+            <!-- Tab for View Expenses -->
+            <TabItem Header="View Expenses" Margin="187,1,-203,0" RenderTransformOrigin="0.558,0.075">
                 <Grid>
-                    <!-- Your content for Incomes tab -->
-                    <!-- Image, Grid, Border, StackPanel, etc. -->
+                    <StackPanel Orientation="Vertical" Margin="10">
+                        <!-- Filtering Controls -->
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                            <TextBlock Text="Type:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
+                            <ComboBox x:Name="TypeComboBox1" Margin="10,0,10,0" Width="100" Background="#DDFFFFFF" SelectionChanged="TypeComboBox_SelectionChanged">
+                                <ComboBoxItem Content=""/>
+                                <ComboBoxItem Content="Expense"/>
+                                <ComboBoxItem Content="Income"/>
+                            </ComboBox>
+
+                            <TextBlock Text="Date:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
+                            <DatePicker x:Name="DatePicker1" FontSize="12" Margin="10,0,10,0" Width="110" Background="#DDFFFFFF" SelectedDateChanged="DatePicker1_SelectionChanged"/>
+
+                            <TextBlock Text="Category:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
+                            <ComboBox x:Name="CategoryComboBox1" Margin="10,0,10,0" Width="100" Background="#DDFFFFFF" SelectionChanged="CategoryComboBox1_SelectionChanged">
+                                <!-- Categories will be dynamically populated -->
+                            </ComboBox>
+
+                            <!-- Clear Filters Button -->
+                            <Button Content="Clear" Click="ClearFiltersButton_Click" Margin="20,0,0,0" FontSize="12" FontWeight="SemiBold" FontStyle="Italic" Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" Width="55"/>
+                        </StackPanel>
+
+                        <DataGrid x:Name="ExpensesDataGrid" AutoGenerateColumns="False" Margin="10"
+                  AlternatingRowBackground="#E5E5E5" GridLinesVisibility="None"
+                  HorizontalGridLinesBrush="#E5E5E5" VerticalGridLinesBrush="#E5E5E5"
+                  RowHeaderWidth="0" CanUserResizeColumns="False"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Width="120">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="80">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="HorizontalAlignment" Value="Center" />
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat={}{0:C}}" Width="80">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*">
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                            </DataGrid.Columns>
+
+                            <!-- Style for the DataGrid -->
+                            <DataGrid.RowStyle>
+                                <Style TargetType="DataGridRow">
+                                    <Setter Property="Background" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="#E5E5E5"/>
+                                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                                    <Setter Property="Height" Value="30"/>
+                                </Style>
+                            </DataGrid.RowStyle>
+
+                            <!-- Style for the DataGridCell -->
+                            <DataGrid.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="BorderBrush" Value="#E5E5E5"/>
+                                    <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                                    <Setter Property="Padding" Value="5"/>
+                                </Style>
+                            </DataGrid.CellStyle>
+
+                            <!-- Style for the DataGridColumnHeader -->
+                            <DataGrid.ColumnHeaderStyle>
+                                <Style TargetType="DataGridColumnHeader">
+                                    <Setter Property="Background" Value="#4CAF50"/>
+                                    <Setter Property="Foreground" Value="White"/>
+                                    <Setter Property="BorderBrush" Value="#4CAF50"/>
+                                    <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                                    <Setter Property="Height" Value="40"/>
+                                    <Setter Property="FontWeight" Value="Bold"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                                </Style>
+                            </DataGrid.ColumnHeaderStyle>
+                        </DataGrid>
+                    </StackPanel>
                 </Grid>
             </TabItem>
+
+            <TabItem Header="Monthly Report" Margin="207,1,-223,0">
+                <Grid>
+                    
+                </Grid>
+            </TabItem>
+            <TabControl.Resources>
+                <!-- Style for the TabControl -->
+                <Style TargetType="TabControl">
+                    <Setter Property="Background" Value="#2C3E50"/>
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                    <Setter Property="Foreground" Value="White"/>
+                </Style>
+
+                <!-- Style for the TabItem -->
+                <Style TargetType="TabItem">
+                    <Setter Property="Background" Value="#2C3E50"/>
+                    <Setter Property="Foreground" Value="White"/>
+                    <Setter Property="BorderBrush" Value="#3498DB"/>
+                    <Setter Property="BorderThickness" Value="0,0,0,2"/>
+                    <Setter Property="Margin" Value="0,0,5,0"/>
+                    <Setter Property="Padding" Value="10,5"/>
+                    <Setter Property="MinHeight" Value="30"/>
+                    <Setter Property="FontSize" Value="14"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="TabItem">
+                                <Grid>
+                                    <Border Name="Border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="5,5,0,0" Background="{TemplateBinding Background}">
+                                        <ContentPresenter x:Name="ContentSite" VerticalAlignment="Center" HorizontalAlignment="Center" ContentSource="Header" RecognizesAccessKey="True"/>
+                                    </Border>
+                                </Grid>
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsSelected" Value="True">
+                                        <Setter TargetName="Border" Property="Background" Value="#3498DB"/>
+                                        <Setter TargetName="ContentSite" Property="TextElement.Foreground" Value="White"/>
+                                    </Trigger>
+                                    <Trigger Property="IsSelected" Value="False">
+                                        <Setter TargetName="Border" Property="Background" Value="#2C3E50"/>
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </TabControl.Resources>
         </TabControl>
     </Grid>
 </Window>

@@ -1,5 +1,6 @@
 ﻿using ExpenseTrackerApp;
 using MongoDB.Driver;
+using System.Collections.Generic;
 
 public class ExpenseRepository
 {
@@ -12,8 +13,13 @@ public class ExpenseRepository
 
     public void AddExpense(Expense expense)
     {
+        // Insert expense data into MongoDB
         _expenseCollection.InsertOne(expense);
     }
 
-    // Implement other CRUD operations as needed
+    public List<Expense> GetExpenses(FilterDefinition<Expense> filter)
+    {
+        // Retrieve expenses from the MongoDB collection based on filter
+        return _expenseCollection.Find(filter).ToList();
+    }
 }
