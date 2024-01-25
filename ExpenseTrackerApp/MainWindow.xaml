@@ -1,0 +1,82 @@
+﻿<Window x:Class="YourExpenseTrackerNamespace.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YourExpenseTrackerNamespace"
+        mc:Ignorable="d"
+        Title="Expense Tracker" Height="450" Width="500">
+    <Grid>
+        <TabControl>
+            <!-- Tab for Expenses -->
+            <TabItem Header="Record Expenses">
+                <Grid>
+                    <Image Source="/Images/BackgroundImg.jpg" Stretch="UniformToFill">
+                        <Image.Effect>
+                            <BlurEffect Radius="10"/>
+                        </Image.Effect>
+                        <Image.OpacityMask>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Offset="0" Color="#00000000"/>
+                                <GradientStop Offset="0.5" Color="#DDFFFFFF"/>
+                                <GradientStop Offset="1" Color="#00000000"/>
+                            </LinearGradientBrush>
+                        </Image.OpacityMask>
+                    </Image>
+                    <Grid VerticalAlignment="Center">
+                        <Border BorderBrush="White" BorderThickness="2" CornerRadius="10" Padding="20" Margin="50,0,50,0" Background="#80000000">
+                            <StackPanel Orientation="Vertical" HorizontalAlignment="Center">
+                                <TextBlock Text="Expense Tracker" FontSize="25" FontWeight="Bold" Foreground="White" Margin="0,0,0,20" Width="229" TextAlignment="Center" FontStyle="Italic" TextDecorations="Underline">
+
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect ShadowDepth="3" BlurRadius="5" Color="Black"/>
+                                    </TextBlock.Effect>
+
+                                </TextBlock>
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="Type:" Margin="0,0,10,0" FontSize="15" Foreground="White"/>
+                                    <ComboBox x:Name="TypeComboBox" Margin="54,0,10,0" Width="150" SelectedIndex="0" Background="#DDFFFFFF" SelectionChanged="TypeComboBox_SelectionChanged">
+                                        <ComboBoxItem Content="Expense"/>
+                                        <ComboBoxItem Content="Income"/>
+                                    </ComboBox>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="Date:" Margin="0,0,10,0" FontSize="15" Foreground="White"/>
+                                    <DatePicker x:Name="DatePicker" Margin="54,0,10,0" Width="150" Background="#DDFFFFFF"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="Category:" Margin="0,0,10,0" FontSize="15" Foreground="White"/>
+                                    <ComboBox x:Name="CategoryComboBox" Margin="25,0,10,0" Width="150" Background="#DDFFFFFF">
+                                        <!-- Categories will be dynamically populated -->
+                                    </ComboBox>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="Description:" FontSize="15" Margin="0,0,10,0" Foreground="White"/>
+                                    <TextBox x:Name="DescriptionTextBox" Margin="10,0,10,0" Width="200" Height="35" Background="#DDFFFFFF" />
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                                    <TextBlock Text="Amount:" FontSize="15" Margin="0,0,10,0" Foreground="White"/>
+                                    <TextBox x:Name="AmountTextBox" Width="100" Height="20" Margin="32,0,10,0" Text="$" Background="#DDFFFFFF" />
+                                </StackPanel>
+
+                                <Button Content="Add Data" Click="AddExpenseButton_Click" Width="130" Height="30" Margin="0,20,0,0" Background="#4CAF50" FontSize="15" Foreground="White" BorderBrush="#4CAF50"/>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                </Grid>
+            </TabItem>
+
+            <!-- Tab for Incomes -->
+            <TabItem Header="View Expenses">
+                <Grid>
+                    <!-- Your content for Incomes tab -->
+                    <!-- Image, Grid, Border, StackPanel, etc. -->
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
