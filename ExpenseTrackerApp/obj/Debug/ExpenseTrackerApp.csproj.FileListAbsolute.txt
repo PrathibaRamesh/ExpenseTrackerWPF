@@ -118,3 +118,9 @@ D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\E
 D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\ExpenseTrackerApp.csproj.CopyComplete
 D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\ExpenseTrackerApp.exe
 D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\ExpenseTrackerApp.pdb
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.dll
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.Wpf.dll
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.pdb
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.xml
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.Wpf.pdb
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.Wpf.xml

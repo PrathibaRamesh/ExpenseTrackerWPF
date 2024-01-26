@@ -4,10 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:YourExpenseTrackerNamespace"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="Expense Tracker" Height="450" Width="700">
     <Grid>
-        <TabControl Background="#2C3E50" Foreground="White" BorderBrush="#3498DB" BorderThickness="1" Margin="10" >
+        <TabControl Background="#2C3E50" Foreground="White" BorderBrush="#3498DB" BorderThickness="1" Margin="10" x:Name="myTabControl" SelectionChanged="TabControl_SelectionChanged">
             <!-- Tab for Record Expenses -->
             <TabItem Header="Record Expenses" Margin="167,1,-183,0">
                 <Grid>
@@ -175,9 +176,56 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Monthly Report" Margin="207,1,-223,0">
+            <TabItem Header="Monthly Report" Margin="207,1,-223,0" x:Name="tabItem3">
                 <Grid>
-                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="330*"/>
+                        <ColumnDefinition Width="26*"/>
+                        <ColumnDefinition Width="13*"/>
+                        <ColumnDefinition Width="305*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- Filter Controls -->
+                    <StackPanel Orientation="Horizontal" Margin="144,15,144,5" Grid.ColumnSpan="4">
+                        <TextBlock Text="Month:" Margin="10,2,0,0" FontSize="13" Foreground="White" FontStyle="Italic" FontWeight="SemiBold" Width="53"/>
+                        <ComboBox x:Name="MonthComboBox" Width="100" Background="#DDFFFFFF" SelectionChanged="MonthComboBox_SelectionChanged">
+                            <ComboBoxItem Content=""/>
+                            <!-- Add months here -->
+                        </ComboBox>
+
+                        <TextBlock Text="Year:" Margin="10,2,0,0" FontSize="13" Foreground="White" FontStyle="Italic" FontWeight="SemiBold" Width="39"/>
+                        <ComboBox x:Name="YearComboBox" Width="100" Background="#DDFFFFFF" SelectionChanged="YearComboBox_SelectionChanged">
+                            <ComboBoxItem Content=""/>
+                            <!-- Add years here -->
+                        </ComboBox>
+
+                        <Button Content="Clear" Click="ClearFiltersButton1_Click" Margin="10,0,0,0"  FontSize="12" FontWeight="SemiBold" FontStyle="Italic" Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" Width="55"/>
+                    </StackPanel>
+
+                    <!-- Chart Container -->
+                    <Grid Grid.Row="1" Grid.ColumnSpan="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="181*"/>
+                            <ColumnDefinition Width="80*"/>
+                            <ColumnDefinition Width="413*"/>
+                        </Grid.ColumnDefinitions>
+                        <!-- LiveCharts PieChart -->
+                        <lvc:PieChart x:Name="ExpensePieChart" LegendLocation="Right" Margin="10,10,10,10" Grid.ColumnSpan="3">
+                            <lvc:PieChart.Series>
+                                <lvc:PieSeries Title="Total Income" Values="{Binding IncomeValues}" DataLabels="True" Stroke="Black"/>
+                                <lvc:PieSeries Title="Total Expense" Values="{Binding ExpenseValues}" DataLabels="True" Stroke="Black"/>
+                                <lvc:PieSeries Title="Remaining" Values="{Binding RemainingValues}" DataLabels="True" Stroke="Black"/>
+                            </lvc:PieChart.Series>
+                            <!-- Set InnerRadius to create a hollow effect -->
+                            <lvc:PieChart.InnerRadius>
+                                50
+                            </lvc:PieChart.InnerRadius>
+                        </lvc:PieChart>
+                    </Grid>
                 </Grid>
             </TabItem>
             <TabControl.Resources>

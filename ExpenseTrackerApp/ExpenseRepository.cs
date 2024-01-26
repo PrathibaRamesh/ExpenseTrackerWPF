@@ -22,4 +22,10 @@ public class ExpenseRepository
         // Retrieve expenses from the MongoDB collection based on filter
         return _expenseCollection.Find(filter).ToList();
     }
+
+    public List<Expense> GetExpensesForChart()
+    {
+        // Retrieve all expenses from the MongoDB collection
+        return _expenseCollection.Find(FilterDefinition<Expense>.Empty).ToList();
+    }
 }
