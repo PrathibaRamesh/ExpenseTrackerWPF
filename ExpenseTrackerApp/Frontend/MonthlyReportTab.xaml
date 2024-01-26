@@ -6,7 +6,7 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:ExpenseTrackerApp"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="830">
+             d:DesignHeight="550" d:DesignWidth="830">
 
     <UserControl.Resources>
         <!-- Style for the PieChart slices -->
@@ -27,15 +27,46 @@
     </UserControl.Resources>
 
     <Grid>
-        <!-- Add a white rectangle as the background -->
-        <Rectangle Fill="White" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="100" RadiusY="100" />
+        <StackPanel Orientation="Vertical" Margin="10">
+            <!-- Filtering Controls -->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,10" Width="481">
+                <TextBlock Text="Month:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
+                <ComboBox x:Name="monthComboBox" Margin="10,0,10,0" Width="100" Background="#DDFFFFFF" SelectionChanged="monthComboBox_SelectionChanged">
+                    <ComboBoxItem Content="January"/>
+                    <ComboBoxItem Content="February"/>
+                    <ComboBoxItem Content="March"/>
+                    <ComboBoxItem Content="April"/>
+                    <ComboBoxItem Content="May"/>
+                    <ComboBoxItem Content="June"/>
+                    <ComboBoxItem Content="July"/>
+                    <ComboBoxItem Content="August"/>
+                    <ComboBoxItem Content="September"/>
+                    <ComboBoxItem Content="October"/>
+                    <ComboBoxItem Content="November"/>
+                    <ComboBoxItem Content="December"/>
+                </ComboBox>
 
-        <lvc:PieChart Name="ReportPieChart" InnerRadius="100">
-            <lvc:PieChart.DataTooltip>
-                <lvc:DefaultTooltip/>
-            </lvc:PieChart.DataTooltip>
-        </lvc:PieChart>
+                <TextBlock Text="Year:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
+                <ComboBox x:Name="yearComboBox" Margin="10,0,10,0" Width="100" Background="#DDFFFFFF" SelectionChanged="yearComboBox_SelectionChanged">
+                    <ComboBoxItem Content="2024"/>
+                    <ComboBoxItem Content="2023"/>
+                </ComboBox>
+                <!--Click="GoButton_Click"-->
+                <Button Content="Go" Margin="20,0,0,0" FontSize="12" FontWeight="SemiBold" FontStyle="Italic" Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" Width="55" Click="GoButton_Click"/>
+            </StackPanel>
+            <Grid Margin="150">
+                <lvc:PieChart x:Name="ReportPieChart" InnerRadius="110" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <lvc:PieChart.DataTooltip>
+                        <lvc:DefaultTooltip/>
+                    </lvc:PieChart.DataTooltip>
+                </lvc:PieChart>
 
-        <TextBlock Name="BalanceTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" />
+                <!-- Increased size of Rectangle for center fill -->
+                <Rectangle Fill="White" Width="100" Height="100" RadiusX="80" RadiusY="80"/>
+
+                <!-- Centered TextBlock over the PieChart -->
+                <TextBlock Text="Remaining:" x:Name="BalanceTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="10" />
+            </Grid>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -22,14 +22,6 @@ namespace ExpenseTrackerApp.Frontend
     /// </summary>
     public partial class ViewExpensesTab : UserControl
     {
-        // Class-level field to store expenses
-        //private List<Expense> expenses;
-
-        //private ExpenseRepository _expenseRepository;
-
-        // Collection to store expenses for binding to DataGrid
-        //private ObservableCollection<Expense> expensesCollection;
-
         // Define categories for each type
         private Dictionary<string, List<string>> categoryOptions = new Dictionary<string, List<string>>
         {
@@ -44,14 +36,6 @@ namespace ExpenseTrackerApp.Frontend
             // Wire up the event handler
             TypeComboBox1.SelectionChanged += TypeComboBox_SelectionChanged;
 
-            //// Initialize the expenses collection
-            //expensesCollection = new ObservableCollection<Expense>();
-
-            //// Set the DataGrid's item source to the expenses collection
-            //ExpensesDataGrid.ItemsSource = expensesCollection;
-
-            //_expenseRepository = new ExpenseRepository();
-
             // Load expenses from MongoDB and populate the DataGrid
             LoadExpenses();
         }
@@ -64,9 +48,6 @@ namespace ExpenseTrackerApp.Frontend
                 string selectedType = (TypeComboBox1.SelectedItem as ComboBoxItem)?.Content?.ToString();
                 string selectedCategory = CategoryComboBox1.SelectedItem?.ToString();
                 DateTime? selectedDate = DatePicker1.SelectedDate;
-
-                //string selectedMonth = MonthComboBox.SelectedItem?.ToString();
-                //string selectedYear = YearComboBox.SelectedItem?.ToString();
 
                 // Build filter definition based on selected criteria
                 var filterBuilder = Builders<Expense>.Filter;
@@ -90,37 +71,12 @@ namespace ExpenseTrackerApp.Frontend
 
                 var mainWindow = Application.Current.MainWindow as MainWindow;
                 ExpensesDataGrid.ItemsSource = mainWindow?.db.GetExpenses(filter, "Expenses");
-
-                // Retrieve expenses from MongoDB based on filter
-                //expenses = _expenseRepository.GetExpenses(filter);
-
-                //// Clear existing data in the collection
-                //expensesCollection.Clear();
-
-                //// Add the retrieved expenses to the collection
-                //foreach (var expense in expenses)
-                //{
-                //    expensesCollection.Add(expense);
-                //}
-
-                // Update chart data
-                //UpdateChartData(expenses);
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        //private void TabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        //{
-        //    // Check if the selected tab is the "Monthly Report" tab
-        //    if (myTabControl.SelectedItem == tabItem3)
-        //    {
-        //        // Call your charts method here
-        //        UpdateChartData();
-        //    }
-        //}
 
         private void TypeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
@@ -130,11 +86,6 @@ namespace ExpenseTrackerApp.Frontend
             {
                 string selectedType;
 
-                // Determine the selected ComboBox and retrieve its selected type
-                //if (selectedComboBox == TypeComboBox)
-                //{
-                //    selectedType = (TypeComboBox.SelectedItem as ComboBoxItem)?.Content?.ToString();
-                //}
                 if (selectedComboBox == TypeComboBox1)
                 {
                     selectedType = (TypeComboBox1.SelectedItem as ComboBoxItem)?.Content?.ToString();
@@ -149,11 +100,6 @@ namespace ExpenseTrackerApp.Frontend
                 {
                     ComboBox relatedCategoryComboBox;
 
-                    // Determine the related Category ComboBox
-                    //if (selectedComboBox == TypeComboBox)
-                    //{
-                    //    relatedCategoryComboBox = CategoryComboBox;
-                    //}
                     if (selectedComboBox == TypeComboBox1)
                     {
                         relatedCategoryComboBox = CategoryComboBox1;

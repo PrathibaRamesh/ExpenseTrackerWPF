@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Expense Tracker" Height="450" Width="830">
+        Title="Expense Tracker" Height="550" Width="830">
     <Grid>
         <TabControl Background="#2C3E50" Foreground="White" BorderBrush="#3498DB" BorderThickness="1" Margin="10" x:Name="myTabControl">
             <!-- Tab for Record Expenses -->

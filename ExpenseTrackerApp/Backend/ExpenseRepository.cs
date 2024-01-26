@@ -46,4 +46,19 @@ public class ExpenseRepository
         var collection = db.GetCollection<Expense>(table);
         return collection.Find(FilterDefinition<Expense>.Empty).ToList();
     }
+
+    public List<Expense> GetExpensesByMonthYear(string table, int month, int year)
+    {
+        var collection = db.GetCollection<Expense>(table);
+        var startOfMonth = new DateTime(year, month, 1);
+        var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1); // Adjusted to include the entire last day
+
+        var filterBuilder = Builders<Expense>.Filter;
+        var filter = filterBuilder.Gte(e => e.Date, new DateTimeOffset(startOfMonth)) &
+                     filterBuilder.Lte(e => e.Date, new DateTimeOffset(endOfMonth.AddHours(23).AddMinutes(59).AddSeconds(59))); // Include the entire last day
+
+        return collection.Find(filter).ToList();
+    }
+
+
 }
