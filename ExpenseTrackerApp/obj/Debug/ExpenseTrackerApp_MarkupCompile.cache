@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\App.xaml
-41939962491
+4-1073001093
 21144145302
-11111859770
+11-1880065274
 38-1516082831
-MainWindow.xaml;MonthlyReportTab.xaml;RecordExpensesTab.xaml;ViewExpensesTab.xaml;
+MainWindow.xaml;Frontend\MonthlyReportTab.xaml;Frontend\RecordExpensesTab.xaml;Frontend\ViewExpensesTab.xaml;
 
 False
 

@@ -18,7 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 
-namespace ExpenseTrackerApp
+namespace ExpenseTrackerApp.Frontend
 {
     /// <summary>
     /// Interaction logic for MonthlyReportTab.xaml

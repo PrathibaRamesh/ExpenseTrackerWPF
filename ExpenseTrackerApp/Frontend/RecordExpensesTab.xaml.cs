@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ExpenseTrackerApp
+namespace ExpenseTrackerApp.Frontend
 {
     /// <summary>
     /// Interaction logic for RecordExpensesTab.xaml

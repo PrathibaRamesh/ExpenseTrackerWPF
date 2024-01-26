@@ -11,16 +11,16 @@
         <TabControl Background="#2C3E50" Foreground="White" BorderBrush="#3498DB" BorderThickness="1" Margin="10" x:Name="myTabControl">
             <!-- Tab for Record Expenses -->
             <TabItem Header="Record Expenses" Margin="167,1,-183,0">
-                <Frame Source="RecordExpensesTab.xaml"/>
+                <Frame Source="Frontend\RecordExpensesTab.xaml"/>
             </TabItem>
 
             <!-- Tab for View Expenses -->
             <TabItem Header="View Expenses" Margin="187,1,-203,0" RenderTransformOrigin="0.558,0.075">
-                <Frame Source="ViewExpensesTab.xaml"/>
+                <Frame Source="Frontend\ViewExpensesTab.xaml"/>
             </TabItem>
 
             <TabItem Header="Monthly Report" Margin="207,1,-223,0" x:Name="tabItem3">
-                <Frame Source="MonthlyReportTab.xaml"/>
+                <Frame Source="Frontend\MonthlyReportTab.xaml"/>
             </TabItem>
             <TabControl.Resources>
                 <!-- Style for the TabControl -->
