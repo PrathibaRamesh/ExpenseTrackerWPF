@@ -6,58 +6,36 @@
              xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
              xmlns:local="clr-namespace:ExpenseTrackerApp"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <!--<Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="330*"/>
-            <ColumnDefinition Width="26*"/>
-            <ColumnDefinition Width="13*"/>
-            <ColumnDefinition Width="305*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+             d:DesignHeight="450" d:DesignWidth="830">
 
-        --><!-- Filter Controls --><!--
-        <StackPanel Orientation="Horizontal" Margin="144,15,144,5" Grid.ColumnSpan="4">
-            <TextBlock Text="Month:" Margin="10,2,0,0" FontSize="13" Foreground="White" FontStyle="Italic" FontWeight="SemiBold" Width="53"/>
-            <ComboBox x:Name="MonthComboBox" Width="100" Background="#DDFFFFFF" SelectionChanged="MonthComboBox_SelectionChanged">
-                <ComboBoxItem Content=""/>
-                --><!-- Add months here --><!--
-            </ComboBox>
+    <UserControl.Resources>
+        <!-- Style for the PieChart slices -->
+        <Style TargetType="lvc:PieSeries">
+            <Setter Property="StrokeThickness" Value="0"/>
+            <Setter Property="Stroke" Value="#FFF"/>
+            <Setter Property="Foreground" Value="#FFF"/>
+            <Setter Property="DataLabels" Value="True"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+        </Style>
 
-            <TextBlock Text="Year:" Margin="10,2,0,0" FontSize="13" Foreground="White" FontStyle="Italic" FontWeight="SemiBold" Width="39"/>
-            <ComboBox x:Name="YearComboBox" Width="100" Background="#DDFFFFFF" SelectionChanged="YearComboBox_SelectionChanged">
-                <ComboBoxItem Content=""/>
-                --><!-- Add years here --><!--
-            </ComboBox>
+        <!-- Style for the Tooltip -->
+        <Style TargetType="lvc:DefaultTooltip">
+            <Setter Property="Background" Value="Black"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Foreground" Value="White"/>
+        </Style>
+    </UserControl.Resources>
 
-            <Button Content="Clear" Click="ClearFiltersButton1_Click" Margin="10,0,0,0"  FontSize="12" FontWeight="SemiBold" FontStyle="Italic" Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" Width="55"/>
-        </StackPanel>
-
-        --><!-- Chart Container --><!--
-        <Grid Grid.Row="1" Grid.ColumnSpan="4">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="181*"/>
-                <ColumnDefinition Width="80*"/>
-                <ColumnDefinition Width="413*"/>
-            </Grid.ColumnDefinitions>
-            --><!-- LiveCharts PieChart --><!--
-            <lvc:PieChart x:Name="ExpensePieChart" LegendLocation="Right" Margin="10,10,10,10" Grid.ColumnSpan="3">
-                <lvc:PieChart.Series>
-                    <lvc:PieSeries Title="Total Income" Values="{Binding IncomeValues}" DataLabels="True" Stroke="Black"/>
-                    <lvc:PieSeries Title="Total Expense" Values="{Binding ExpenseValues}" DataLabels="True" Stroke="Black"/>
-                    <lvc:PieSeries Title="Remaining" Values="{Binding RemainingValues}" DataLabels="True" Stroke="Black"/>
-                </lvc:PieChart.Series>
-                --><!-- Set InnerRadius to create a hollow effect --><!--
-                <lvc:PieChart.InnerRadius>
-                    50
-                </lvc:PieChart.InnerRadius>
-            </lvc:PieChart>
-        </Grid>
-    </Grid>-->
     <Grid>
-        <lvc:PieChart Name="ReportPieChart" />
+        <!-- Add a white rectangle as the background -->
+        <Rectangle Fill="White" Width="200" Height="200" HorizontalAlignment="Center" VerticalAlignment="Center" RadiusX="100" RadiusY="100" />
+
+        <lvc:PieChart Name="ReportPieChart" InnerRadius="100">
+            <lvc:PieChart.DataTooltip>
+                <lvc:DefaultTooltip/>
+            </lvc:PieChart.DataTooltip>
+        </lvc:PieChart>
+
+        <TextBlock Name="BalanceTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="20" />
     </Grid>
 </UserControl>

@@ -5,106 +5,108 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ExpenseTrackerApp"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <StackPanel Orientation="Vertical" Margin="10">
-            <!-- Filtering Controls -->
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                <TextBlock Text="Type:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
-                <ComboBox x:Name="TypeComboBox1" Margin="10,0,10,0" Width="100" Background="#DDFFFFFF" SelectionChanged="TypeComboBox_SelectionChanged">
-                    <ComboBoxItem Content=""/>
-                    <ComboBoxItem Content="Expense"/>
-                    <ComboBoxItem Content="Income"/>
-                </ComboBox>
+             d:DesignHeight="450" d:DesignWidth="830">
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid>
+            <StackPanel Orientation="Vertical" Margin="10">
+                <!-- Filtering Controls -->
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                    <TextBlock Text="Type:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
+                    <ComboBox x:Name="TypeComboBox1" Margin="10,0,10,0" Width="100" Background="#DDFFFFFF" SelectionChanged="TypeComboBox_SelectionChanged">
+                        <ComboBoxItem Content=""/>
+                        <ComboBoxItem Content="Expense"/>
+                        <ComboBoxItem Content="Income"/>
+                    </ComboBox>
 
-                <TextBlock Text="Date:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
-                <DatePicker x:Name="DatePicker1" FontSize="12" Margin="10,0,10,0" Width="110" Background="#DDFFFFFF" SelectedDateChanged="DatePicker1_SelectionChanged"/>
+                    <TextBlock Text="Date:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
+                    <DatePicker x:Name="DatePicker1" FontSize="12" Margin="10,0,10,0" Width="110" Background="#DDFFFFFF" SelectedDateChanged="DatePicker1_SelectionChanged"/>
 
-                <TextBlock Text="Category:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
-                <ComboBox x:Name="CategoryComboBox1" Margin="10,0,10,0" Width="100" Background="#DDFFFFFF" SelectionChanged="CategoryComboBox1_SelectionChanged">
-                    <!-- Categories will be dynamically populated -->
-                </ComboBox>
+                    <TextBlock Text="Category:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
+                    <ComboBox x:Name="CategoryComboBox1" Margin="10,0,10,0" Width="100" Background="#DDFFFFFF" SelectionChanged="CategoryComboBox1_SelectionChanged">
+                        <!-- Categories will be dynamically populated -->
+                    </ComboBox>
 
-                <!-- Clear Filters Button -->
-                <Button Content="Clear" Click="ClearFiltersButton_Click" Margin="20,0,0,0" FontSize="12" FontWeight="SemiBold" FontStyle="Italic" Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" Width="55"/>
-            </StackPanel>
+                    <!-- Clear Filters Button -->
+                    <Button Content="Clear" Click="ClearFiltersButton_Click" Margin="20,0,0,0" FontSize="12" FontWeight="SemiBold" FontStyle="Italic" Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" Width="55"/>
+                </StackPanel>
 
-            <DataGrid x:Name="ExpensesDataGrid" AutoGenerateColumns="False" Margin="10"
+                <DataGrid x:Name="ExpensesDataGrid" AutoGenerateColumns="False" Margin="10"
                   AlternatingRowBackground="#E5E5E5" GridLinesVisibility="None"
                   HorizontalGridLinesBrush="#E5E5E5" VerticalGridLinesBrush="#E5E5E5"
                   RowHeaderWidth="0" CanUserResizeColumns="False"
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Width="120">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="80">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="HorizontalAlignment" Value="Center" />
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat={}{0:C}}" Width="80">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*">
-                        <DataGridTextColumn.CellStyle>
-                            <Style TargetType="DataGridCell">
-                                <Setter Property="HorizontalAlignment" Value="Center"/>
-                            </Style>
-                        </DataGridTextColumn.CellStyle>
-                    </DataGridTextColumn>
-                </DataGrid.Columns>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Width="120">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="80">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="HorizontalAlignment" Value="Center" />
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat={}{0:C}}" Width="80">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                        <DataGridTextColumn Header="Description" Binding="{Binding Description}" Width="*">
+                            <DataGridTextColumn.CellStyle>
+                                <Style TargetType="DataGridCell">
+                                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                                </Style>
+                            </DataGridTextColumn.CellStyle>
+                        </DataGridTextColumn>
+                    </DataGrid.Columns>
 
-                <!-- Style for the DataGrid -->
-                <DataGrid.RowStyle>
-                    <Style TargetType="DataGridRow">
-                        <Setter Property="Background" Value="White"/>
-                        <Setter Property="BorderBrush" Value="#E5E5E5"/>
-                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                        <Setter Property="Height" Value="30"/>
-                    </Style>
-                </DataGrid.RowStyle>
+                    <!-- Style for the DataGrid -->
+                    <DataGrid.RowStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="Background" Value="White"/>
+                            <Setter Property="BorderBrush" Value="#E5E5E5"/>
+                            <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                            <Setter Property="Height" Value="30"/>
+                        </Style>
+                    </DataGrid.RowStyle>
 
-                <!-- Style for the DataGridCell -->
-                <DataGrid.CellStyle>
-                    <Style TargetType="DataGridCell">
-                        <Setter Property="BorderBrush" Value="#E5E5E5"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
-                        <Setter Property="Padding" Value="5"/>
-                    </Style>
-                </DataGrid.CellStyle>
+                    <!-- Style for the DataGridCell -->
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="BorderBrush" Value="#E5E5E5"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="Padding" Value="5"/>
+                        </Style>
+                    </DataGrid.CellStyle>
 
-                <!-- Style for the DataGridColumnHeader -->
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="Background" Value="#4CAF50"/>
-                        <Setter Property="Foreground" Value="White"/>
-                        <Setter Property="BorderBrush" Value="#4CAF50"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
-                        <Setter Property="Height" Value="40"/>
-                        <Setter Property="FontWeight" Value="Bold"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
-            </DataGrid>
-        </StackPanel>
-    </Grid>
+                    <!-- Style for the DataGridColumnHeader -->
+                    <DataGrid.ColumnHeaderStyle>
+                        <Style TargetType="DataGridColumnHeader">
+                            <Setter Property="Background" Value="#4CAF50"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="BorderBrush" Value="#4CAF50"/>
+                            <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                            <Setter Property="Height" Value="40"/>
+                            <Setter Property="FontWeight" Value="Bold"/>
+                            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                        </Style>
+                    </DataGrid.ColumnHeaderStyle>
+                </DataGrid>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
 </UserControl>

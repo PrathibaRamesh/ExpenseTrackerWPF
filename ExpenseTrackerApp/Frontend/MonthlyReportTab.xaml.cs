@@ -58,6 +58,15 @@ namespace ExpenseTrackerApp.Frontend
             }
 
             ReportPieChart.Series = pieChartSeries;
+
+            decimal totalIncome = expensesReport.Where(e => e.Type == "Income").Sum(e => e.Amount);
+            decimal totalExpense = expensesReport.Where(e => e.Type == "Expense").Sum(e => e.Amount);
+            decimal balance = totalIncome - totalExpense;
+
+            BalanceTextBlock.Text = (balance >= 0 ? "+" : "-") + balance.ToString("C"); // Format as currency
+            BalanceTextBlock.Foreground = balance < 0 ? Brushes.Red : Brushes.Green;
+
         }
+
     }
 }
