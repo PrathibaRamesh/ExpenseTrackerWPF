@@ -124,3 +124,9 @@ D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\L
 D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.xml
 D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.Wpf.pdb
 D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\bin\Debug\LiveCharts.Wpf.xml
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\RecordExpensesTab.g.cs
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\RecordExpensesTab.baml
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\MonthlyReportTab.g.cs
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\ViewExpensesTab.g.cs
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\MonthlyReportTab.baml
+D:\Prathiba\Projects\ExpTrackWPF\ExpenseTrackerWPF\ExpenseTrackerApp\obj\Debug\ViewExpensesTab.baml
