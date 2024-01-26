@@ -14,13 +14,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace ExpenseTrackerApp.Frontend
-{
-    /// <summary>
-    /// Interaction logic for RecordExpensesTab.xaml
-    /// </summary>
-    public partial class RecordExpensesTab : UserControl
+{    public partial class RecordExpensesTab : UserControl
     {
-        private ExpenseRepository _expenseRepository;
+        //private ExpenseRepository _expenseRepository;
 
         // Define categories for each type
         private Dictionary<string, List<string>> categoryOptions = new Dictionary<string, List<string>>
@@ -29,12 +25,12 @@ namespace ExpenseTrackerApp.Frontend
             { "Income", new List<string> { "", "Salary", "Bonus", "Gift", "Others" } }
         };
 
-        public RecordExpensesTab()
-        {
-            InitializeComponent();
+        //public RecordExpensesTab()
+        //{
+        //    InitializeComponent();
 
-            _expenseRepository = new ExpenseRepository();
-        }
+        //    _expenseRepository = new ExpenseRepository();
+        //}
 
         private void AddExpenseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -63,7 +59,10 @@ namespace ExpenseTrackerApp.Frontend
                     // Add other properties as needed
                 };
 
-                _expenseRepository.AddExpense(expense);
+                //_expenseRepository.AddExpense(expense);
+
+                var mainWindow = Application.Current.MainWindow as MainWindow;
+                mainWindow?.db.AddExpense("Expenses", expense);
 
                 // Clear all inputs after adding to the database
                 DescriptionTextBox.Text = string.Empty;
@@ -71,6 +70,12 @@ namespace ExpenseTrackerApp.Frontend
                 TypeComboBox.SelectedIndex = 0; // Assuming the default index represents "Expense"
                 CategoryComboBox.Items.Clear();
                 DatePicker.SelectedDate = DateTime.Now;
+
+                // Inside AddPersonUserControl, after inserting a person...
+                GlobalEvents.RaiseDataAdded();
+
+                // Refresh the persons data grid in the other tab
+                mainWindow?.RefreshData();
 
                 MessageBox.Show("Expense added successfully!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }

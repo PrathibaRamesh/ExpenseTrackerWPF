@@ -129,13 +129,23 @@
     </ApplicationDefinition>
     <Compile Include="Frontend\MonthlyReportTab.xaml.cs">
       <DependentUpon>MonthlyReportTab.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Frontend\RecordExpensesTab.xaml.cs">
       <DependentUpon>RecordExpensesTab.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
     <Compile Include="Frontend\ViewExpensesTab.xaml.cs">
       <DependentUpon>ViewExpensesTab.xaml</DependentUpon>
     </Compile>
+    <Page Include="Frontend\MonthlyReportTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
+    <Page Include="Frontend\RecordExpensesTab.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -146,25 +156,17 @@
     </Compile>
     <Compile Include="Backend\Expense.cs" />
     <Compile Include="Backend\ExpenseRepository.cs" />
+    <Compile Include="GlobalEvents.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Frontend\MonthlyReportTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Frontend\RecordExpensesTab.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Frontend\ViewExpensesTab.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Backend\ObservableValueWithColor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

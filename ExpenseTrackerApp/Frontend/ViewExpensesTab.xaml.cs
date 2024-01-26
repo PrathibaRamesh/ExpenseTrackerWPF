@@ -23,12 +23,12 @@ namespace ExpenseTrackerApp.Frontend
     public partial class ViewExpensesTab : UserControl
     {
         // Class-level field to store expenses
-        private List<Expense> expenses;
+        //private List<Expense> expenses;
 
-        private ExpenseRepository _expenseRepository;
+        //private ExpenseRepository _expenseRepository;
 
         // Collection to store expenses for binding to DataGrid
-        private ObservableCollection<Expense> expensesCollection;
+        //private ObservableCollection<Expense> expensesCollection;
 
         // Define categories for each type
         private Dictionary<string, List<string>> categoryOptions = new Dictionary<string, List<string>>
@@ -44,13 +44,13 @@ namespace ExpenseTrackerApp.Frontend
             // Wire up the event handler
             TypeComboBox1.SelectionChanged += TypeComboBox_SelectionChanged;
 
-            // Initialize the expenses collection
-            expensesCollection = new ObservableCollection<Expense>();
+            //// Initialize the expenses collection
+            //expensesCollection = new ObservableCollection<Expense>();
 
-            // Set the DataGrid's item source to the expenses collection
-            ExpensesDataGrid.ItemsSource = expensesCollection;
+            //// Set the DataGrid's item source to the expenses collection
+            //ExpensesDataGrid.ItemsSource = expensesCollection;
 
-            _expenseRepository = new ExpenseRepository();
+            //_expenseRepository = new ExpenseRepository();
 
             // Load expenses from MongoDB and populate the DataGrid
             LoadExpenses();
@@ -88,17 +88,20 @@ namespace ExpenseTrackerApp.Frontend
                               filterBuilder.Lt("Date", selectedDate.Value.Date.AddDays(1));
                 }
 
+                var mainWindow = Application.Current.MainWindow as MainWindow;
+                ExpensesDataGrid.ItemsSource = mainWindow?.db.GetExpenses(filter, "Expenses");
+
                 // Retrieve expenses from MongoDB based on filter
-                expenses = _expenseRepository.GetExpenses(filter);
+                //expenses = _expenseRepository.GetExpenses(filter);
 
-                // Clear existing data in the collection
-                expensesCollection.Clear();
+                //// Clear existing data in the collection
+                //expensesCollection.Clear();
 
-                // Add the retrieved expenses to the collection
-                foreach (var expense in expenses)
-                {
-                    expensesCollection.Add(expense);
-                }
+                //// Add the retrieved expenses to the collection
+                //foreach (var expense in expenses)
+                //{
+                //    expensesCollection.Add(expense);
+                //}
 
                 // Update chart data
                 //UpdateChartData(expenses);

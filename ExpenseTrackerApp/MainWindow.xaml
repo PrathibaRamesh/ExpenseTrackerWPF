@@ -3,24 +3,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ExpenseTrackerApp"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         mc:Ignorable="d"
         Title="Expense Tracker" Height="450" Width="700">
     <Grid>
         <TabControl Background="#2C3E50" Foreground="White" BorderBrush="#3498DB" BorderThickness="1" Margin="10" x:Name="myTabControl">
             <!-- Tab for Record Expenses -->
             <TabItem Header="Record Expenses" Margin="167,1,-183,0">
-                <Frame Source="Frontend\RecordExpensesTab.xaml"/>
+                <Frame x:Name="addDataFrame" Source="Frontend\RecordExpensesTab.xaml"/>
             </TabItem>
 
             <!-- Tab for View Expenses -->
             <TabItem Header="View Expenses" Margin="187,1,-203,0" RenderTransformOrigin="0.558,0.075">
-                <Frame Source="Frontend\ViewExpensesTab.xaml"/>
+                <Frame x:Name="viewDataFrame" Source="Frontend\ViewExpensesTab.xaml"/>
             </TabItem>
 
             <TabItem Header="Monthly Report" Margin="207,1,-223,0" x:Name="tabItem3">
-                <Frame Source="Frontend\MonthlyReportTab.xaml"/>
+                <Frame x:Name="reportDataFrame" Source="Frontend\MonthlyReportTab.xaml"/>
             </TabItem>
             <TabControl.Resources>
                 <!-- Style for the TabControl -->
