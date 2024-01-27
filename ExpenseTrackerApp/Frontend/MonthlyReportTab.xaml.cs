@@ -54,6 +54,7 @@ namespace ExpenseTrackerApp.Frontend
             int defaultYear = int.Parse(yearComboBox.SelectedItem.ToString());
 
             LoadReportData(defaultMonth, defaultYear);
+            LoadExpensesByCategory(defaultMonth, defaultYear);
 
         }
 
@@ -70,6 +71,7 @@ namespace ExpenseTrackerApp.Frontend
                 int month = DateTime.ParseExact(monthName, "MMMM", CultureInfo.InvariantCulture).Month;
 
                 LoadReportData(month, year);
+                LoadExpensesByCategory(month, year);
             }
         }
 
@@ -129,7 +131,25 @@ namespace ExpenseTrackerApp.Frontend
             BalanceTextBlock.Text = (balance >= 0 ? "+" : "-") + balance.ToString("C"); // Format as currency
             BalanceTextBlock.Foreground = balance < 0 ? Brushes.Red : Brushes.Green;
 
+
+            // For Data table Category Vs Amount Spent
+
+
         }
 
+        public void LoadExpensesByCategory(int month, int year)
+        {
+            // Set the ItemsSource to null
+            ReportDataTable.ItemsSource = null;
+
+            // Clear the Items collection
+            ReportDataTable.Items.Clear();
+
+            var mainWindow = Application.Current.MainWindow as MainWindow;
+            var expensesByCategory = mainWindow?.db.GetExpensesGroupedByCategory(month, year, "Expenses");
+
+            // Update the ItemsSource with the new data
+            ReportDataTable.ItemsSource = expensesByCategory;
+        }
     }
 }

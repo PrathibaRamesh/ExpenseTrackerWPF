@@ -1,8 +1,10 @@
 ﻿using ExpenseTrackerApp;
+using ExpenseTrackerApp.Backend;
 using MongoDB.Bson;
 using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Documents;
 
 public class ExpenseRepository
@@ -60,5 +62,42 @@ public class ExpenseRepository
         return collection.Find(filter).ToList();
     }
 
+    public List<ExpenseGroup> GetExpensesGroupedByCategory(int month, int year, string table)
+    {
+        var collection = db.GetCollection<Expense>(table);
+        var startOfMonth = new DateTime(year, month, 1);
+        var endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+
+        var filterBuilder = Builders<Expense>.Filter;
+        var filter = filterBuilder.Gte(e => e.Date, new DateTimeOffset(startOfMonth)) &
+                     filterBuilder.Lte(e => e.Date, new DateTimeOffset(endOfMonth.AddHours(23).AddMinutes(59).AddSeconds(59))) &
+                     filterBuilder.Eq(e => e.Type, "Expense");
+
+        //var groupedData = collection
+        //    .Aggregate()
+        //    .Match(filter)
+        //    .Group(
+        //        e => e.Category,
+        //        g => new ExpenseGroup
+        //        {
+        //            Category = g.Key,
+        //            TotalAmount = g.Sum(e => e.Amount)
+        //        }
+        //    )
+        //    .ToList();
+
+        var filteredExpenses = collection.Find(filter).ToList();
+
+        var groupedData = filteredExpenses
+            .GroupBy(e => e.Category)
+            .Select(group => new ExpenseGroup
+            {
+                Category = group.Key,
+                TotalAmount = group.Sum(e => e.Amount)
+            })
+            .ToList();
+
+        return groupedData;
+    }
 
 }

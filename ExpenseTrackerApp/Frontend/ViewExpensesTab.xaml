@@ -37,28 +37,28 @@
                   HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
 
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Width="120">
+                        <DataGridTextColumn Header="Date" Binding="{Binding Date, StringFormat={}{0:MM/dd/yyyy}}" Width="*">
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="80">
+                        <DataGridTextColumn Header="Type" Binding="{Binding Type}" Width="*">
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="120">
+                        <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="*">
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="HorizontalAlignment" Value="Center" />
                                 </Style>
                             </DataGridTextColumn.CellStyle>
                         </DataGridTextColumn>
-                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat={}{0:C}}" Width="80">
+                        <DataGridTextColumn Header="Amount" Binding="{Binding Amount, StringFormat={}{0:C}}" Width="*">
                             <DataGridTextColumn.CellStyle>
                                 <Style TargetType="DataGridCell">
                                     <Setter Property="HorizontalAlignment" Value="Center"/>

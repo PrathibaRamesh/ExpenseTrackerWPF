@@ -127,6 +127,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Backend\ExpenseGroup.cs" />
     <Compile Include="Frontend\MonthlyReportTab.xaml.cs">
       <DependentUpon>MonthlyReportTab.xaml</DependentUpon>
       <SubType>Code</SubType>

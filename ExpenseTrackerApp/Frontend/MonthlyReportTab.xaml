@@ -27,7 +27,13 @@
     </UserControl.Resources>
 
     <Grid>
-        <StackPanel Orientation="Vertical" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <!-- First column for existing content -->
+            <ColumnDefinition Width="0.5*"/>
+            <!-- Second column for the new grid/table -->
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Orientation="Vertical" Margin="10">
             <!-- Filtering Controls -->
             <StackPanel Orientation="Horizontal" Margin="0,0,0,10" Width="481">
                 <TextBlock Text="Month:" Margin="20,2,10,0" FontSize="12" Foreground="White" FontStyle="Italic" FontWeight="SemiBold"/>
@@ -55,7 +61,7 @@
                 <Button Content="Go" Margin="20,0,0,0" FontSize="12" FontWeight="SemiBold" FontStyle="Italic" Background="#4CAF50" Foreground="White" BorderBrush="#4CAF50" Width="55" Click="GoButton_Click"/>
             </StackPanel>
             <Grid Margin="150">
-                <lvc:PieChart x:Name="ReportPieChart" InnerRadius="110" HorizontalAlignment="Center" VerticalAlignment="Center">
+                <lvc:PieChart x:Name="ReportPieChart" InnerRadius="110" HorizontalAlignment="Center" VerticalAlignment="Center" >
                     <lvc:PieChart.DataTooltip>
                         <lvc:DefaultTooltip/>
                     </lvc:PieChart.DataTooltip>
@@ -67,6 +73,64 @@
                 <!-- Centered TextBlock over the PieChart -->
                 <TextBlock Text="Remaining:" x:Name="BalanceTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontSize="10" />
             </Grid>
+        </StackPanel>
+
+        <StackPanel Orientation="Vertical" Margin="519,87,10,26" Grid.ColumnSpan="2">
+            <!-- New Grid/Table for displaying data -->
+            <DataGrid x:Name="ReportDataTable"  AutoGenerateColumns="False" Margin="10"
+                  AlternatingRowBackground="#E5E5E5" GridLinesVisibility="None"
+                  HorizontalGridLinesBrush="#E5E5E5" VerticalGridLinesBrush="#E5E5E5"
+                  RowHeaderWidth="0" CanUserResizeColumns="False"
+                  HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="*">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Header="Amount Spent" Binding="{Binding TotalAmount}" Width="*">
+                        <DataGridTextColumn.CellStyle>
+                            <Style TargetType="DataGridCell">
+                                <Setter Property="HorizontalAlignment" Value="Center"/>
+                            </Style>
+                        </DataGridTextColumn.CellStyle>
+                    </DataGridTextColumn>
+                </DataGrid.Columns>
+
+                <!-- Style for the DataGrid -->
+                <DataGrid.RowStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="Background" Value="White"/>
+                        <Setter Property="BorderBrush" Value="#E5E5E5"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                        <Setter Property="Height" Value="30"/>
+                    </Style>
+                </DataGrid.RowStyle>
+
+                <!-- Style for the DataGridCell -->
+                <DataGrid.CellStyle>
+                    <Style TargetType="DataGridCell">
+                        <Setter Property="BorderBrush" Value="#E5E5E5"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                        <Setter Property="Padding" Value="5"/>
+                    </Style>
+                </DataGrid.CellStyle>
+
+                <!-- Style for the DataGridColumnHeader -->
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="Background" Value="#4CAF50"/>
+                        <Setter Property="Foreground" Value="White"/>
+                        <Setter Property="BorderBrush" Value="#4CAF50"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,1"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="FontWeight" Value="Bold"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+            </DataGrid>
         </StackPanel>
     </Grid>
 </UserControl>
