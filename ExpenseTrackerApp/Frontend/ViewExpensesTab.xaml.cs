@@ -1,19 +1,8 @@
 ﻿using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace ExpenseTrackerApp.Frontend
 {
@@ -22,7 +11,7 @@ namespace ExpenseTrackerApp.Frontend
     /// </summary>
     public partial class ViewExpensesTab : UserControl
     {
-        // Define categories for each type
+        // Define categories for each type for dynamic load
         private Dictionary<string, List<string>> categoryOptions = new Dictionary<string, List<string>>
         {
             { "Expense", new List<string> { "", "Food", "Utilities", "Transportation", "Others" } },
@@ -40,6 +29,8 @@ namespace ExpenseTrackerApp.Frontend
             LoadExpenses();
         }
 
+        // Method: LoadExpenses
+        // Purpose: Method to Load all expenses and income in grid from MongoDB based on filter criteria.
         private void LoadExpenses()
         {
             try
@@ -78,6 +69,8 @@ namespace ExpenseTrackerApp.Frontend
             }
         }
 
+        // Method: TypeComboBox_SelectionChanged
+        // Purpose: Method to handle Type combo box to load the data dynamically based on Category.
         private void TypeComboBox_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
         {
             ComboBox selectedComboBox = sender as ComboBox;
@@ -129,16 +122,23 @@ namespace ExpenseTrackerApp.Frontend
                 LoadExpenses();
             }
         }
+
+        // Method: DatePicker1_SelectionChanged
+        // Purpose: Method to handle Date picker calendar.
         private void DatePicker1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LoadExpenses();
         }
 
+        // Method: CategoryComboBox1_SelectionChanged
+        // Purpose: Method to handle Category combo box.
         private void CategoryComboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             LoadExpenses();
         }
 
+        // Method: ClearFiltersButton_Click
+        // Purpose: Method to clear the filter data id needed.
         private void ClearFiltersButton_Click(object sender, RoutedEventArgs e)
         {
             // Clear filter options and reload expenses

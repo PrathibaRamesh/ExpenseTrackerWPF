@@ -1,22 +1,11 @@
-﻿using LiveCharts.Defaults;
+﻿using LiveCharts;
 using LiveCharts.Wpf;
-using LiveCharts;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Collections.ObjectModel;
 
 namespace ExpenseTrackerApp.Frontend
 {
@@ -25,11 +14,9 @@ namespace ExpenseTrackerApp.Frontend
     /// </summary>
     public partial class MonthlyReportTab : UserControl
     {
-
         public MonthlyReportTab()
         {
             InitializeComponent();
-            //LoadReportData();
 
             // Initialize the ComboBoxes with default values if needed
             InitializeComboBoxes();
@@ -58,6 +45,8 @@ namespace ExpenseTrackerApp.Frontend
 
         }
 
+        // Method: GoButton_Click
+        // Purpose: Method to handle button click that will get the filter options and load grid accordingly from DB.
         private void GoButton_Click(object sender, RoutedEventArgs e)
         {
             if (monthComboBox.SelectedItem != null && yearComboBox.SelectedItem != null)
@@ -75,18 +64,22 @@ namespace ExpenseTrackerApp.Frontend
             }
         }
 
+        // Method: monthComboBox_SelectionChanged
+        // Purpose: Method to handle month combo box.
         private void monthComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Optionally, you can call LoadReportData here as well if you want the chart to update 
-            // automatically when the month or year selection changes.
+
         }
 
+        // Method: yearComboBox_SelectionChanged
+        // Purpose: Method to handle year combo box.
         private void yearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Optionally, you can call LoadReportData here as well if you want the chart to update 
-            // automatically when the month or year selection changes.
+
         }
 
+        // Method: LoadReportData
+        // Purpose: Method to load the pie chart with total income, expense, remaining amount from DB based on month and year filter.
         public void LoadReportData(int month, int year)
         {
             //var mainWindow = Application.Current.MainWindow as MainWindow;
@@ -137,6 +130,8 @@ namespace ExpenseTrackerApp.Frontend
 
         }
 
+        // Method: LoadExpensesByCategory
+        // Purpose: Method to load the Data Table with expenses total grouped by category from DB based on month and year filter.
         public void LoadExpensesByCategory(int month, int year)
         {
             // Set the ItemsSource to null

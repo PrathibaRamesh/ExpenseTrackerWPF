@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Expense Tracker" Height="550" Width="830">
+        Title="Expense Tracker" Height="550" Width="830" WindowStartupLocation="CenterScreen"
+        WindowStyle="SingleBorderWindow" Background="Transparent">
     <Grid>
         <TabControl Background="#2C3E50" Foreground="White" BorderBrush="#3498DB" BorderThickness="1" Margin="10" x:Name="myTabControl">
             <!-- Tab for Record Expenses -->
@@ -17,6 +18,7 @@
                 <Frame x:Name="viewDataFrame" Source="Frontend\ViewExpensesTab.xaml"/>
             </TabItem>
 
+            <!-- Tab for Monthly Report -->
             <TabItem Header="Monthly Report" Margin="271,1,-287,-1" x:Name="tabItem3">
                 <Frame x:Name="reportDataFrame" Source="Frontend\MonthlyReportTab.xaml"/>
             </TabItem>

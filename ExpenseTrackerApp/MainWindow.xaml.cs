@@ -17,7 +17,7 @@ namespace ExpenseTrackerApp
         // Method to refresh the data in ViewPersonsUserControl
         public void RefreshData()
         {
-            // Here, navigate to the Frame again to refresh it
+            // Here, navigate to the Frame again to refresh corresponding tab views
             viewDataFrame.Navigate(new Uri("Frontend\\ViewExpensesTab.xaml", UriKind.Relative));
             reportDataFrame.Navigate(new Uri("Frontend\\MonthlyReportTab.xaml", UriKind.Relative));
         }

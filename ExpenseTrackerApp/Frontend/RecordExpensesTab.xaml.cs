@@ -3,6 +3,7 @@ using System.Collections.Generic;
 
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace ExpenseTrackerApp.Frontend
 {    public partial class RecordExpensesTab : UserControl
@@ -15,6 +16,14 @@ namespace ExpenseTrackerApp.Frontend
             { "Expense", new List<string> { "", "Food", "Utilities", "Transportation", "Others" } },
             { "Income", new List<string> { "", "Salary", "Bonus", "Gift", "Others" } }
         };
+
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+            {
+                //this.DragEnter();
+            }
+        }
 
         private void AddExpenseButton_Click(object sender, RoutedEventArgs e)
         {
