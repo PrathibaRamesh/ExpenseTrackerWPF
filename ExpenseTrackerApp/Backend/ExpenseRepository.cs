@@ -31,6 +31,7 @@ public class ExpenseRepository
     public List<Expense> GetExpenses(FilterDefinition<Expense> filter, string table)
     {
         var collection = db.GetCollection<Expense>(table);
+        var result = collection.Find(filter).ToList();
         return collection.Find(filter).ToList();
     }
 

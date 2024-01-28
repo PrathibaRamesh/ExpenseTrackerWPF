@@ -3,6 +3,15 @@ using System.Windows;
 
 namespace ExpenseTrackerApp
 {
+    // Interface for Unit Text purposes
+    public interface IMainWindow
+    {
+        ExpenseRepository db { get; }
+
+        void RefreshData();
+
+        void AddExpense(string category, Expense expense); 
+    }
     public partial class MainWindow : Window
     {
         public ExpenseRepository db;

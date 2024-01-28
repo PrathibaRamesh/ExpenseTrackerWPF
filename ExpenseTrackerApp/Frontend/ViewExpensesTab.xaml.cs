@@ -29,6 +29,18 @@ namespace ExpenseTrackerApp.Frontend
             LoadExpenses();
         }
 
+        private long ConvertToMongoDBTicks(DateTime dateTime)
+        {
+            // MongoDB tick is 100-nanosecond intervals since 1/1/0001, which is the same as .NET DateTime ticks
+            return dateTime.Ticks;
+        }
+
+        private int GetTimezoneOffset(DateTime dateTime)
+        {
+            // Get timezone offset in minutes
+            return (int)TimeZoneInfo.Local.GetUtcOffset(dateTime).TotalMinutes;
+        }
+
         // Method: LoadExpenses
         // Purpose: Method to Load all expenses and income in grid from MongoDB based on filter criteria.
         private void LoadExpenses()
@@ -56,8 +68,12 @@ namespace ExpenseTrackerApp.Frontend
 
                 if (selectedDate.HasValue)
                 {
-                    filter &= filterBuilder.Gte("Date", selectedDate.Value.Date) &
-                              filterBuilder.Lt("Date", selectedDate.Value.Date.AddDays(1));
+                    // Adjust filter to match the MongoDB structure to match Date time array.
+                    long selectedDateTicks = ConvertToMongoDBTicks(selectedDate.Value.Date);
+                    int timezoneOffset = GetTimezoneOffset(selectedDate.Value.Date);
+
+                    filter &= filterBuilder.Gte("Date.0", selectedDateTicks) &
+                              filterBuilder.Lt("Date.0", ConvertToMongoDBTicks(selectedDate.Value.Date.AddDays(1)));
                 }
 
                 var mainWindow = Application.Current.MainWindow as MainWindow;
